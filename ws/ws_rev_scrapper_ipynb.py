@@ -38,13 +38,13 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 #Local modules
-import admin
+#import admin
 import ws_ugly_stuff as ug
 
 
 # Path Settings
-os.chdir(admin.wd)
-sys.path.append(os.chdir(admin.wd))
+#os.chdir(admin.wd)
+#sys.path.append(os.chdir(admin.wd))
 
 
 # Key Control
