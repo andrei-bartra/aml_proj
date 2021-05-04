@@ -18,12 +18,14 @@ df = pd.DataFrame()
 
 for s in os.listdir(directory):
     filename = os.fsdecode(s)
+
     with open(directory+filename, 'r+') as f:
         text = f.read()
         text = re.sub('	 ', '', text)
         f.seek(0)
         f.write(text)
         f.truncate()
+
     raw = pd.read_csv(directory+filename, header=None, delimiter = "\t")
     speaker = raw.iloc[::2]
     speaker.reset_index(drop=True, inplace=True)
@@ -37,3 +39,12 @@ for s in os.listdir(directory):
     
 df['0_y'] = df['0_y'].str.replace(r" \(.*\):","")
 df['0_x'] = df["0_x"].str.replace(r"(\s*\[.*?\].\s*)", " ").str.strip()
+df['0_x'] = df["0_x"].str.replace(r"(\s*\[.*?\]\s*)", " ").str.strip()
+df["length"] = [len(x.split()) for x in df['0_x'].tolist()] 
+df['count'] = df['0_y'].map(df['0_y'].value_counts())
+df.sort_values(by = 'length', inplace=True) 
+df.drop(df[df['length'] < 20].index, inplace = True)
+df.rename({'0_x': 'X', '0_y': 'Y'}, axis='columns', inplace=True)
+
+df.loc[df['Y'].str.contains("Pelosi"), 'Y'] = 'Nancy Pelosi'
+df.drop(df[df['Y'].str.contains("Speaker|speaker", regex=True)].index, inplace = True)
