@@ -36,7 +36,6 @@ from selenium.webdriver.common.keys import Keys
 
 #Other libraries
 import time
-import pandas as pd
 
 #Local modules
 import admin
@@ -48,6 +47,17 @@ os.chdir(admin.wd)
 sys.path.append(os.chdir(admin.wd))
 
 
+# Key Control
+print('Loading Web Scrapper Lord {}'.format(os.environ['USER']))
+if os.environ['USER'] == 'Tato':
+    cmd_key = Keys.COMMAND
+
+elif os.environ['USER'] == 'andrei':
+    cmd_key = Keys.CONTROL
+
+elif os.environ['USER'] == 'andre':
+    cmd_key = Keys.CONTROL
+
 #  ________________________________________
 # |                                        |
 # |               3: Crawler               |
@@ -55,50 +65,57 @@ sys.path.append(os.chdir(admin.wd))
 
 
 
-def crawler(load_time=1,  test=False):
+def crawler(load_time=1,  test=None):
     options = webdriver.ChromeOptions()
     p = {"download.default_directory": ug.dpath, "safebrowsing.enabled":"false"}
     options.add_experimental_option("prefs", p)
     driver = Chrome(ug.driver_path, options=options)
     driver.get(ug.url)
     driver.maximize_window()
-
+    i = 0
     while True:
-
+        if i==test:
+            break
         page_bar = driver.find_element_by_xpath(ug.xpaths['nbar'])
         next_button = page_bar.find_elements(By.TAG_NAME, "li")[-1]
         if next_button.text != 'NEXT »':
             break
         rev_list = driver.find_elements_by_class_name("fl-post-column")
-        if not test:
-            for rev in rev_list:
-                ActionChains(driver).move_to_element(rev).key_down(Keys.CONTROL).\
-                    click(rev).key_up(Keys.CONTROL).perform()
-                time.sleep(load_time)
-                driver.switch_to.window(driver.window_handles[1])
-                webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
-                time.sleep(load_time)
-                webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
-                time.sleep(load_time)
-                webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        for rev in rev_list:
+            ActionChains(driver).move_to_element(rev).key_down(cmd_key).\
+                click(rev).key_up(cmd_key).perform()
+            time.sleep(load_time)
+            driver.switch_to.window(driver.window_handles[1])
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+            time.sleep(load_time)
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+            time.sleep(load_time)
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
 
-                try:
-                    driver.find_element_by_xpath(ug.xpaths['link']).click()
-                    driver.close()
-                    driver.switch_to.window(driver.window_handles[0])
-                except:
-                    continue
-                time.sleep(load_time)
-                driver.find_element_by_xpath(ug.xpaths['dwld']).click()
-                time.sleep(load_time + 1)
-                select = Select(driver.find_element_by_xpath(ug.xpaths['type']))
-                select.select_by_value('4')
-                body = driver.find_element_by_class_name("modal-body")
-                xport = body.find_elements(By.TAG_NAME, "button")[0]
-                xport.click()
-                time.sleep(load_time)
+            try:
+                driver.find_element_by_xpath(ug.xpaths['link']).click()
+            except:
                 driver.close()
                 driver.switch_to.window(driver.window_handles[0])
+                continue
+            time.sleep(load_time)
+            driver.find_element_by_xpath(ug.xpaths['dwld']).click()
+            time.sleep(load_time + 1)
+            select = Select(driver.find_element_by_xpath(ug.xpaths['type']))
+            select.select_by_value('4')
+            body = driver.find_element_by_class_name("modal-body")
+            xport = body.find_elements(By.TAG_NAME, "button")[0]
+            xport.click()
+            time.sleep(load_time)
+            driver.close()
+            driver.switch_to.window(driver.window_handles[0])
+            i += 1
+            print('saving transcript {}'.format(i))
+            if i==test:
+                break
         next_button.click()
         time.sleep(load_time + 2)
 

@@ -40,7 +40,7 @@ sys.path.insert(1, './dc')
 
 print('Welcome {}'.format(os.environ['USER']))
 if os.environ['USER'] == 'Tato':
-    
+
     OUT_CSV_PATH = '/Users/Tato/Desktop/Advanced ML/Project/transcripts/emfd_out.csv'
     IN_CSV_PATH = '/Users/Tato/Desktop/Advanced ML/Project/transcripts/'
 elif os.environ['USER'] == 'andrei':
@@ -48,6 +48,10 @@ elif os.environ['USER'] == 'andrei':
     OUT_CSV_PATH = r'/mnt/d/Google Drive/U Chicago/8. Q6/AML/Project/data/raw_output/emfd_out_sample.csv'
     IN_CSV_PATH = r'/mnt/d/Google Drive/U Chicago/8. Q6/AML/Project/data/trans_test/'
 
+elif os.environ['USER'] == 'andre':
+
+    OUT_CSV_PATH = r'D:/Google Drive/U Chicago/8. Q6/AML/Project/data/raw_output/emfd_out_sample.csv'
+    IN_CSV_PATH = r'D:/Google Drive/U Chicago/8. Q6/AML/Project/data/trans_test'
 
 #  ________________________________________
 # |                                        |
