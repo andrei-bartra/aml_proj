@@ -17,9 +17,9 @@ Elections season is characterized by high information variance where much of the
 
 2. The webscrapping code is available in the [ws/ws_rev_webscrapper.py code](ws/ws_rev_webscrapper.py).
 
-3. In the file models we have saved the last version of the [embedding](/model/model.model), a [dataframe](model/tagger.csv) with the probability distribution of each word in our corpus and the [neural network mdoel](model/tagger.model).
+3. In the file models we have saved the last version of the [embedding](models/model.model), a [dataframe](models/tagger.csv) with the probability distribution of each word in our corpus and the [neural network model](models/tagger.model).
 
-4. In the [dictionaries file](model/dictionaries/) there are the Moral foundations dictionaries we use for the project.
+4. In the [dictionaries file](/dictionaries) there are the Moral foundations dictionaries we use for the project.
 
 ## Main results
 
