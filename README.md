@@ -15,7 +15,7 @@ Elections season is characterized by high information variance where much of the
 
 1. All the data cleaning, data structure (graph), training (embedding, and neural network), estimation (RUI), and user interface proof of concept are available in the [data_pipeline notebook](data_pipeline.ipynb)
 
-2. The webscrapping code is available in the [ws/ws_rev_webscrapper.py code](ws/ws_rev_webscrapper.py).
+2. The webscrapping code is available in the [ws/ws_rev_webscrapper.py code](ws/ws_rev_scrapper.py).
 
 3. In the file models we have saved the last version of the [embedding](models/model.model), a [dataframe](models/tagger.csv) with the probability distribution of each word in our corpus and the [neural network model](models/tagger.model).
 
