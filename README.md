@@ -9,7 +9,7 @@ Elections season is characterized by high information variance where much of the
 
 ## Main Document:
 
-[Report](AML_project_report.pdf)
+[Report](AML_Project_Report.pdf)
 
 ## Sections
 
