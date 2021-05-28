@@ -37,5 +37,5 @@ Then fitted a neural netowork classifier using the MFD 2.0 words, reaching 85% o
 
 Finally, a user can fill an open version of the [MFQ](https://moralfoundations.org/wp-content/uploads/files/MFQ30.doc) in the following [link](https://forms.gle/yaBGq9UjkEPmdxim6) to get an estimate of the RUI and compatibility with political personalities.
 
-![user](user_result.png)
+![user](user_result.PNG)
 
